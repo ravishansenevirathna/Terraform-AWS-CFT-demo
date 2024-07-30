@@ -8,7 +8,7 @@ resource "aws_instance" "ubuntu_server" {
   ami           = "ami-0d8f6eb4f641ef691"  # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - as of writing
   instance_type = "t2.micro"               # Free tier instance type
 
-  key_name = "my-key-pair"                 # Replace with your key pair name
+  key_name = "my-key-pair"                 # Replace with your key pair name nn
 
   vpc_security_group_ids = [aws_security_group.ssh.id]
 
