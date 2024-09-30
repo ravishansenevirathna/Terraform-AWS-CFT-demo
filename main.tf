@@ -91,3 +91,5 @@ resource "azurerm_virtual_machine" "example" {
     environment = "testing"
   }
 }
+
+//
