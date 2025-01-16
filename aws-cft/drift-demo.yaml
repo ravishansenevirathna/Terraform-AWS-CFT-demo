@@ -7,4 +7,4 @@ Resources:
     Properties:
       BucketName: drift-demo-s3-bucket-demo-drift
       VersioningConfiguration:
-        Status: Enabled
+        Status: disabled
