@@ -1,4 +1,3 @@
-#create s3 bucket
 resource "aws_s3_bucket" "mybucket" {
   bucket = var.bucketname
 }
@@ -11,6 +10,7 @@ resource "aws_s3_bucket_ownership_controls" "example" {
   }
 }
 
+#make the bucket public
 resource "aws_s3_bucket_public_access_block" "example" {
   bucket = aws_s3_bucket.mybucket.id
 
@@ -30,31 +30,38 @@ resource "aws_s3_bucket_acl" "example" {
   acl    = "public-read"
 }
 
+#upload files to s3 bucket
 resource "aws_s3_object" "index" {
   bucket = aws_s3_bucket.mybucket.id
-  key = "index.html"
+  key    = "index.html"
   source = "index.html"
   acl = "public-read"
   content_type = "text/html"
+
 }
 
 resource "aws_s3_object" "error" {
   bucket = aws_s3_bucket.mybucket.id
-  key = "error.html"
+  key    = "error.html"
   source = "error.html"
   acl = "public-read"
   content_type = "text/html"
+
 }
 
 resource "aws_s3_object" "profile" {
   bucket = aws_s3_bucket.mybucket.id
-  key = "profile.png"
-  source = "profile.png"
+  key    = "profile.jpg"
+  source = "profile.jpg"
   acl = "public-read"
+  content_type = "text/html"
+
 }
 
+#enable static website hosting
 resource "aws_s3_bucket_website_configuration" "website" {
   bucket = aws_s3_bucket.mybucket.id
+
   index_document {
     suffix = "index.html"
   }
@@ -64,4 +71,5 @@ resource "aws_s3_bucket_website_configuration" "website" {
   }
 
   depends_on = [ aws_s3_bucket_acl.example ]
+
 }
